@@ -112,9 +112,11 @@ def main():
 		insertcompmove(board , comppos ,' o')
 		if iswinner(board , ' x'):
 			print("good job you win")
+			printBoard(board)
 			exit()
 		elif iswinner(board , ' o'):
 			print('lmao u cant even tie with this computer')
+			printBoard(board)
 			exit()
 
 	printBoard(board)
