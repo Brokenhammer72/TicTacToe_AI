@@ -36,8 +36,6 @@ def compmove(board):
 				insertcompmove(boardcopy , i , let)
 				if iswinner(boardcopy , let):
 					return i
-
-
 	notcorners = []
 	for i in possibemoves:
 		if i in [1,3,5,7]:
@@ -48,15 +46,15 @@ def compmove(board):
 		if i in [0,6,2,8]:
 			corners.append(i)
 
-		if 4 in possibemoves:
-			return 4
+	if 4 in possibemoves:
+		return 4
 
-		if len(corners) != 0:
-			random_corner = random.randint(0 , len(corners) - 1)
-			return corners[random_corner]
-		else:
-			random_not_corner = random.randint(0 , len(notcorners) - 1)
-			return notcorners[random_not_corner]
+	if len(corners) != 0:
+		random_corner = random.randint(0 , len(corners) - 1)
+		return corners[random_corner]
+	else:
+		random_not_corner = random.randint(0 , len(notcorners) - 1)
+		return notcorners[random_not_corner]
 		
 def insertmove(board , pos):
 	board[pos] = ' x'
