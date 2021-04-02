@@ -50,10 +50,13 @@ def compmove(board):
 	if 4 in possibemoves:
 		return 4
 
-	if len(corners) != 0 and len(corners) != 2:
-		random_corner = random.randint(0 , len(corners) - 1)
-		return corners[random_corner]
-	
+	if len(corners) != 0:
+		if board[4] ==' o':
+			random_not_corner = random.randint(0 , len(notcorners) - 1)
+			return notcorners[random_not_corner]
+		else:
+			random_corner = random.randint(0 , len(corners) - 1)
+			return corners[random_corner]	
 	else:
 		random_not_corner = random.randint(0 , len(notcorners) - 1)
 		return notcorners[random_not_corner]
@@ -97,7 +100,6 @@ def iswinner(bo , sy):
 def main():
 	time_done = 0 
 	while True: #gnt is game not tie 
-		print(time_done)	
 		
 
 		printBoard(board)
