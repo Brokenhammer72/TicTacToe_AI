@@ -17,6 +17,7 @@ def takeInput():
 def isvalid(board , pos):
 	if pos < 0 or pos > 9:
 		return False
+
 	# trying to check if the value is a integer
 	if board[pos] != '  ':
 		return False
@@ -49,9 +50,10 @@ def compmove(board):
 	if 4 in possibemoves:
 		return 4
 
-	if len(corners) != 0:
+	if len(corners) != 0 and len(corners) != 2:
 		random_corner = random.randint(0 , len(corners) - 1)
 		return corners[random_corner]
+	
 	else:
 		random_not_corner = random.randint(0 , len(notcorners) - 1)
 		return notcorners[random_not_corner]
@@ -61,7 +63,7 @@ def insertmove(board , pos):
 
 def insertcompmove(board , pos , sy):
 	board[pos] = sy 
-
+ 
 #the is sy is the symbol like ' x' for the human and ' o' for the computer
 def iswinner(bo , sy):
 	if bo[0] == sy and bo[1] == sy and bo[2] == sy:
@@ -90,35 +92,42 @@ def iswinner(bo , sy):
 
 	return False
 
-#gnt is game not tie its becames false when the board is full and there are no more valid moves
 
-def gnt(board):
-	for i in range(9):
-		if isvalid(board , i):
-			return True
-	return False		
 
 def main():
-	while gnt(board): #gnt is game not tie 
+	time_done = 0 
+	while True: #gnt is game not tie 
+		print(time_done)	
+		
+
 		printBoard(board)
 		pos = int(takeInput()) - 1
+
 		if not isvalid(board , pos):
 			print("enter a valid value")	
 			main()
+
 		insertmove(board , pos)	
+		time_done =  time_done + 1
+
+		if time_done == 5:
+			print("ITS A TIE GG!")
+			break
+			
 		comppos = compmove(board)
+
 		insertcompmove(board , comppos ,' o')
+
 		if iswinner(board , ' x'):
 			print("good job you win")
 			printBoard(board)
 			exit()
+
 		elif iswinner(board , ' o'):
 			print('lmao u cant even tie with this computer')
 			printBoard(board)
 			exit()
-
-	printBoard(board)
-	print("TIE")
+		
 			
 print('TICTACTOE')
 main()
